@@ -1,13 +1,17 @@
 import React from "react";
+import Banner from "../Banner/Banner";
 
-function WinBanner({numOfGuesses}) {
+function WinBanner({ numOfGuesses }) {
   return (
-    <div className="happy banner">
+    <Banner status="happy">
       <p>
-        <strong>Congratulations!</strong> Got it in {' '}
-        <strong>{numOfGuesses} guesses</strong>.
+        <strong>Congratulations!</strong> Got it in{" "}
+        <strong>
+          {numOfGuesses === 1 ? "1 guess" : `${numOfGuesses} guesses`}
+        </strong>
+        .
       </p>
-    </div>
+    </Banner>
   );
 }
 

@@ -6,7 +6,7 @@ import GuessInput from "../GuessInput";
 import GuessResults from "../GuessResults";
 import WinBanner from "../WinBanner/WinBanner";
 import LoseBanner from "../LoseBanner/LoseBanner";
-import { checkGuess } from "../../game-helpers";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -23,11 +23,9 @@ function Game() {
     let nextGuesses = [...guesses, tentativeGuess];
     setGuesses(nextGuesses);
 
-    let result = checkGuess(tentativeGuess, answer);
-    let win = result?.every(value => 'correct' === value.status);
-    if (win) {
+    if (tentativeGuess.toUpperCase() === answer) {
       setGameStatus('win');
-    } else if(nextGuesses.length === 6){
+    } else if(nextGuesses.length === NUM_OF_GUESSES_ALLOWED){
       setGameStatus('lose');
     }
       
